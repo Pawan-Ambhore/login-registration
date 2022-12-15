@@ -4,8 +4,8 @@ export default class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fname: "",
-      lname: "",
+      name: "",
+      accountType: "",
       email: "",
       password: "",
     };
@@ -13,8 +13,8 @@ export default class SignUp extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    const { fname, lname, email, password } = this.state;
-    console.log(fname, lname, email, password);
+    const { name, accountType, email, password } = this.state;
+    console.log(name, accountType, email, password);
     fetch("http://localhost:5000/register", {
       method: "POST",
       crossDomain: true,
@@ -24,9 +24,9 @@ export default class SignUp extends Component {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        fname,
+        name,
         email,
-        lname,
+        accountType,
         password,
       }),
     })
@@ -41,22 +41,22 @@ export default class SignUp extends Component {
         <h3>Sign Up</h3>
 
         <div className="mb-3">
-          <label>First name</label>
+          <label>Name</label>
           <input
             type="text"
             className="form-control"
-            placeholder="First name"
-            onChange={(e) => this.setState({ fname: e.target.value })}
+            placeholder="Name"
+            onChange={(e) => this.setState({ name: e.target.value })}
           />
         </div>
 
         <div className="mb-3">
-          <label>Last name</label>
+          <label>Role</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Last name"
-            onChange={(e) => this.setState({ lname: e.target.value })}
+            placeholder="Role"
+            onChange={(e) => this.setState({ accountType: e.target.value })}
           />
         </div>
 
